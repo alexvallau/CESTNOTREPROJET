@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+
 	content, err := os.ReadFile("dashboard.yaml")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Could not read file: %s\n", err)

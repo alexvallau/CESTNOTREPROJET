@@ -4,14 +4,41 @@ editable: true
 tags: [generated]
 auto_refresh: 5s
 
+variables:
+  - interval:
+      name: interval
+      label: Interval
+      values: ["30s", "1m", "5m", "10m", "30m", "1h", "6h", "12h"]
+
 rows:
   - name: InfluxDB
     panels:
-      - timeseries:
+      - graph:
           title: "{{ handler }}"
           height: 400px
           datasource: InfluxDB
           targets:
             - influxdb:
-                query: "from(bucket: \"iot-platform\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r[\"_measurement\"] == \"setpointUplink\" or r[\"_measurement\"] == \"temperature\" or r[\"_measurement\"] == \"setpointDownlink\") |> filter(fn: (r) => r[\"_field\"] == \"value\") |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> yield(name: \"mean\")"
-                
+                query: |
+                  from(bucket: "iot-platform")
+                    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+                    |> filter(fn: (r) => r["_measurement"] == "setpointUplink")
+                    |> filter(fn: (r) => r["_field"] == "value")
+                    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                    |> yield(name: "mean")
+            - influxdb:
+                query: |
+                  from(bucket: "iot-platform")
+                    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+                    |> filter(fn: (r) => r["_measurement"] == "temperature")
+                    |> filter(fn: (r) => r["_field"] == "value")
+                    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                    |> yield(name: "mean")
+            - influxdb:
+                query: |
+                  from(bucket: "iot-platform")
+                    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+                    |> filter(fn: (r) => r["_measurement"] == "setpointDownlink")
+                    |> filter(fn: (r) => r["_field"] == "value")
+                    |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                    |> yield(name: "mean")
