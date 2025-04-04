@@ -1,0 +1,17 @@
+title: "{{ handler }}"
+
+editable: true
+tags: [generated]
+auto_refresh: 5s
+
+rows:
+  - name: InfluxDB
+    panels:
+      - timeseries:
+          title: "{{ handler }}"
+          height: 400px
+          datasource: InfluxDB
+          targets:
+            - influxdb:
+                query: "from(bucket: \"iot-platform\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r[\"_measurement\"] == \"setpointUplink\" or r[\"_measurement\"] == \"temperature\" or r[\"_measurement\"] == \"setpointDownlink\") |> filter(fn: (r) => r[\"_field\"] == \"value\") |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> yield(name: \"mean\")"
+                
