@@ -1,13 +1,13 @@
-title: "Mydashboard"
+title: "Dashboard IoT Dynamique"
 editable: true
-tags: [generated]
+tags: [auto-generated]
 auto_refresh: 5s
 
 rows:
-  - name: InfluxDB
+  - name: Mesures
     panels:
       - timeseries:
-          title: "{{ handler 1 }}"
+          title: "device_1"
           height: 400px
           datasource: InfluxDB
           targets:
@@ -15,13 +15,12 @@ rows:
                 query: >
                   from(bucket: "iot-platform")
                   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                  |> filter(fn: (r) => r["_measurement"] == "device_1" )
+                  |> filter(fn: (r) => r["_measurement"] == "device_1")
                   |> filter(fn: (r) => r["_field"] == "consigne" or r["_field"] == "setpoint" or r["_field"] == "temperature")
                   |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
                   |> yield(name: "mean")
-                 
       - timeseries:
-          title: "{{ handler 2 }}"
+          title: "device_2"
           height: 400px
           datasource: InfluxDB
           targets:
@@ -29,7 +28,20 @@ rows:
                 query: >
                   from(bucket: "iot-platform")
                   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                  |> filter(fn: (r) => r["_measurement"] == "{{ handler 1 }}" )
+                  |> filter(fn: (r) => r["_measurement"] == "device_2")
+                  |> filter(fn: (r) => r["_field"] == "consigne" or r["_field"] == "setpoint" or r["_field"] == "temperature")
+                  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                  |> yield(name: "mean")
+      - timeseries:
+          title: "device_3"
+          height: 400px
+          datasource: InfluxDB
+          targets:
+            - influxdb:
+                query: >
+                  from(bucket: "iot-platform")
+                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+                  |> filter(fn: (r) => r["_measurement"] == "device_3")
                   |> filter(fn: (r) => r["_field"] == "consigne" or r["_field"] == "setpoint" or r["_field"] == "temperature")
                   |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
                   |> yield(name: "mean")
