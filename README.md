@@ -1,4 +1,4 @@
-##Projet Réalisé par Bastien Broisin, Romain Bressy, Yacine Mahiouz, Alexandre Arizzi et Maxime Giambi.
+## Projet Réalisé par Bastien Broisin, Romain Bressy, Yacine Mahiouz, Alexandre Arizzi et Maxime Giambi.
 
 Générateur Automatique de Dashboards Grafana pour Capteurs IoT
 
