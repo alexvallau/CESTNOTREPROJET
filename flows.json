@@ -1,16 +1,16 @@
 [
     {
-        "id": "594c2d7d5069c978",
+        "id": "4fba69895c0685e8",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Flux 1",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "05d0ff18e647fc53",
+        "id": "05a48b461daefc9e",
         "type": "mqtt-broker",
-        "name": "Mayouz",
+        "name": "MAYOUZ",
         "broker": "eu1.cloud.thethings.network",
         "port": "1883",
         "clientid": "",
@@ -19,23 +19,42 @@
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
+        "autoUnsubscribe": true,
         "birthTopic": "",
         "birthQos": "0",
+        "birthRetain": "false",
         "birthPayload": "",
         "birthMsg": {},
         "closeTopic": "",
         "closeQos": "0",
+        "closeRetain": "false",
         "closePayload": "",
         "closeMsg": {},
         "willTopic": "",
         "willQos": "0",
+        "willRetain": "false",
         "willPayload": "",
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
     },
     {
-        "id": "34f4c942b0eff2c3",
+        "id": "b0b25962c3682228",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influx",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "0aa40e02926c88e7",
         "type": "mqtt-broker",
         "name": "Roumaxou",
         "broker": "eu1.cloud.thethings.network",
@@ -46,75 +65,71 @@
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
+        "autoUnsubscribe": true,
         "birthTopic": "",
         "birthQos": "0",
+        "birthRetain": "false",
         "birthPayload": "",
         "birthMsg": {},
         "closeTopic": "",
         "closeQos": "0",
+        "closeRetain": "false",
         "closePayload": "",
         "closeMsg": {},
         "willTopic": "",
         "willQos": "0",
+        "willRetain": "false",
         "willPayload": "",
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
     },
     {
-        "id": "32120f2e51fdb2e8",
-        "type": "influxdb",
-        "hostname": "127.0.0.1",
-        "port": "8086",
-        "protocol": "http",
-        "database": "database",
-        "name": "influx",
-        "usetls": false,
-        "tls": "",
-        "influxdbVersion": "2.0",
-        "url": "http://192.168.141.122:8086",
-        "timeout": "10",
-        "rejectUnauthorized": true
-    },
-    {
-        "id": "b5bd12d6221f29a1",
-        "type": "influxdb",
-        "hostname": "192.168.141.122",
-        "port": "8086",
-        "protocol": "http",
-        "database": "database",
-        "name": "Infulux",
-        "usetls": false,
-        "tls": "",
-        "influxdbVersion": "2.0",
-        "url": "http://192.168.141.122:8086",
-        "timeout": "10",
-        "rejectUnauthorized": true
-    },
-    {
-        "id": "9694241da6f0fcdb",
-        "type": "mqtt out",
-        "z": "594c2d7d5069c978",
-        "name": "Publisher",
-        "topic": "v3/bressy-arizzi@ttn/devices/projet-device/down/push",
+        "id": "53cd03d67c535856",
+        "type": "mqtt in",
+        "z": "4fba69895c0685e8",
+        "name": "Subscriber",
+        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/up",
         "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "05a48b461daefc9e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 640,
+        "y": 260,
+        "wires": [
+            [
+                "0203dc1df206b56d",
+                "1364a5b36ddf8aaa",
+                "46e9db99254179b8"
+            ]
+        ]
+    },
+    {
+        "id": "2893fd03515b218e",
+        "type": "mqtt out",
+        "z": "4fba69895c0685e8",
+        "name": "Publisher",
+        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/down/push",
+        "qos": "",
         "retain": "",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
         "correl": "",
         "expiry": "",
-        "broker": "34f4c942b0eff2c3",
-        "x": 700,
-        "y": 500,
+        "broker": "05a48b461daefc9e",
+        "x": 420,
+        "y": 100,
         "wires": []
     },
     {
-        "id": "483a0dfe2a09fe7d",
+        "id": "ce0a85b0b904e84d",
         "type": "inject",
-        "z": "594c2d7d5069c978",
-        "d": true,
-        "name": "Temp set",
+        "z": "4fba69895c0685e8",
+        "name": "LED ON",
         "props": [
             {
                 "p": "payload"
@@ -124,161 +139,26 @@
                 "vt": "str"
             }
         ],
-        "repeat": "180",
+        "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"downlinks\":[{\"f_port\":30,\"decoded_payload\":{\"setpoint\":15},\"priority\":\"NORMAL\"}]}",
+        "payload": "{\"downlinks\":[{\"f_port\":15,\"frm_payload\":\"AQ==\",\"priority\":\"NORMAL\"}]}",
         "payloadType": "json",
-        "x": 170,
-        "y": 520,
+        "x": 140,
+        "y": 80,
         "wires": [
             [
-                "d9c04d79655419aa"
+                "2893fd03515b218e"
             ]
         ]
     },
     {
-        "id": "5cf38a95be3147ef",
-        "type": "mqtt in",
-        "z": "594c2d7d5069c978",
-        "name": "Subscriber",
-        "topic": "v3/bressy-arizzi@ttn/devices/projet-device/down/#",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "34f4c942b0eff2c3",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 400,
-        "y": 680,
-        "wires": [
-            [
-                "09872d46e7a116b7"
-            ]
-        ]
-    },
-    {
-        "id": "09872d46e7a116b7",
+        "id": "0203dc1df206b56d",
         "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages DownLink 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "d9c04d79655419aa",
-        "type": "function",
-        "z": "594c2d7d5069c978",
-        "name": "",
-        "func": "msg.payload.downlinks[0].decoded_payload.setpoint = Math.floor(Math.random() * (25 - 15 + 1)) + 15;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 520,
-        "wires": [
-            [
-                "9694241da6f0fcdb",
-                "e634deba655ebf1f"
-            ]
-        ]
-    },
-    {
-        "id": "cd8f1d2d0bb72d09",
-        "type": "mqtt in",
-        "z": "594c2d7d5069c978",
-        "name": "Subscriber",
-        "topic": "v3/bressy-arizzi@ttn/devices/projet-device/up",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "34f4c942b0eff2c3",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 400,
-        "y": 600,
-        "wires": [
-            [
-                "e634deba655ebf1f",
-                "9f835f672f834f71"
-            ]
-        ]
-    },
-    {
-        "id": "e634deba655ebf1f",
-        "type": "function",
-        "z": "594c2d7d5069c978",
-        "name": "fonction-total",
-        "func": "// Si le message contient des données uplink, on traite et envoie le message complet.\nif (msg.payload && msg.payload.uplink_message && msg.payload.uplink_message.decoded_payload) {\n    // Récupère les données uplink (température et setpoint)\n    let uplink = msg.payload.uplink_message.decoded_payload;\n    // Récupère la dernière valeur de new setpoint stockée (ou null si non défini)\n    let Consigne = flow.get(\"consigne\") || null;\n    // Construit le nouveau payload combiné\n    msg.payload = {\n        temperature: uplink.temperature,\n        setpoint: uplink.setpoint,\n        consigne: Consigne\n    };\n    return msg;\n}\n\n// Si le message contient des données downlink, on met à jour le contexte et on n'envoie rien.\nif (msg.payload && msg.payload.downlinks && msg.payload.downlinks[0] && msg.payload.downlinks[0].decoded_payload) {\n    // Récupère le setpoint contenu dans le downlink\n    let ns = msg.payload.downlinks[0].decoded_payload.setpoint;\n    // Stocke ce new setpoint dans le contexte (flow)\n    flow.set(\"consigne\", ns);\n    // Ne pas envoyer ce message en aval, puisqu'on n'envoie que les messages uplink enrichis\n    return null;\n}\n\n// Dans les autres cas, renvoyer simplement le message inchangé (ou adapter selon vos besoins)\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 690,
-        "y": 560,
-        "wires": [
-            [
-                "2f494a9c0e23e4b6",
-                "550eba9bb660a405"
-            ]
-        ]
-    },
-    {
-        "id": "2f494a9c0e23e4b6",
-        "type": "influxdb out",
-        "z": "594c2d7d5069c978",
-        "influxdb": "32120f2e51fdb2e8",
-        "name": "Influxdb",
-        "measurement": "device_2",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "database",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "training-usmb",
-        "bucket": "iot-platform",
-        "x": 900,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "550eba9bb660a405",
-        "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages total 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "9f835f672f834f71",
-        "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages UpLink 2",
+        "z": "4fba69895c0685e8",
+        "name": "Messages UpLink",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -287,34 +167,15 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 670,
-        "y": 620,
+        "x": 910,
+        "y": 180,
         "wires": []
     },
     {
-        "id": "256f06a7f7a175a9",
-        "type": "mqtt out",
-        "z": "594c2d7d5069c978",
-        "name": "Publisher",
-        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/down/push",
-        "qos": "2",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "05d0ff18e647fc53",
-        "x": 700,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "906c2bc0b5f2c7a4",
+        "id": "5ea4ec6a3a1d57c6",
         "type": "inject",
-        "z": "594c2d7d5069c978",
-        "d": true,
-        "name": "Temp set",
+        "z": "4fba69895c0685e8",
+        "name": "LED OFF",
         "props": [
             {
                 "p": "payload"
@@ -324,88 +185,147 @@
                 "vt": "str"
             }
         ],
-        "repeat": "180",
+        "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"downlinks\":[{\"f_port\":30,\"decoded_payload\":{\"setpoint\":15},\"priority\":\"NORMAL\"}]}",
+        "payload": "{\"downlinks\":[{\"f_port\":15,\"frm_payload\":\"AA==\",\"priority\":\"NORMAL\"}]}",
         "payloadType": "json",
-        "x": 170,
-        "y": 260,
+        "x": 140,
+        "y": 140,
         "wires": [
             [
-                "31179534c9c268f7"
+                "2893fd03515b218e"
             ]
         ]
     },
     {
-        "id": "31179534c9c268f7",
-        "type": "function",
-        "z": "594c2d7d5069c978",
-        "name": "",
-        "func": "msg.payload.downlinks[0].decoded_payload.setpoint = Math.floor(Math.random() * (25 - 15 + 1)) + 15;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 260,
+        "id": "71c3f8f209276ba1",
+        "type": "inject",
+        "z": "4fba69895c0685e8",
+        "name": "LED ON DECODED",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"downlinks\":[{\"f_port\":15,\"decoded_payload\":{\"led\":1},\"priority\":\"NORMAL\"}]}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 20,
         "wires": [
             [
-                "256f06a7f7a175a9",
-                "56dcda7e765cab55"
+                "2893fd03515b218e"
             ]
         ]
     },
     {
-        "id": "b1151d66a7f57c78",
+        "id": "1ff108f0715d53a1",
+        "type": "inject",
+        "z": "4fba69895c0685e8",
+        "name": "LED OFF DECODED",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"downlinks\":[{\"f_port\":15,\"decoded_payload\":{\"led\":0},\"priority\":\"NORMAL\"}]}",
+        "payloadType": "json",
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "2893fd03515b218e"
+            ]
+        ]
+    },
+    {
+        "id": "f122411155917d56",
+        "type": "debug",
+        "z": "4fba69895c0685e8",
+        "name": "Messages Downlink",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ec1fb7886e8dc75d",
         "type": "mqtt in",
-        "z": "594c2d7d5069c978",
+        "z": "4fba69895c0685e8",
         "name": "Subscriber",
-        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/up",
+        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/down/#",
         "qos": "2",
-        "datatype": "json",
-        "broker": "05d0ff18e647fc53",
+        "datatype": "auto-detect",
+        "broker": "05a48b461daefc9e",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 400,
-        "y": 340,
+        "x": 700,
+        "y": 120,
         "wires": [
             [
-                "56dcda7e765cab55",
-                "8e72527e12b5879b"
+                "f122411155917d56"
             ]
         ]
     },
     {
-        "id": "56dcda7e765cab55",
-        "type": "function",
-        "z": "594c2d7d5069c978",
-        "name": "fonction-total",
-        "func": "// Si le message contient des données uplink, on traite et envoie le message complet.\nif (msg.payload && msg.payload.uplink_message && msg.payload.uplink_message.decoded_payload) {\n    // Récupère les données uplink (température et setpoint)\n    let uplink = msg.payload.uplink_message.decoded_payload;\n    // Récupère la dernière valeur de new setpoint stockée (ou null si non défini)\n    let Consigne = flow.get(\"consigne\") || null;\n    // Construit le nouveau payload combiné\n    msg.payload = {\n        temperature: uplink.temperature,\n        setpoint: uplink.setpoint,\n        consigne: Consigne\n    };\n    return msg;\n}\n\n// Si le message contient des données downlink, on met à jour le contexte et on n'envoie rien.\nif (msg.payload && msg.payload.downlinks && msg.payload.downlinks[0] && msg.payload.downlinks[0].decoded_payload) {\n    // Récupère le setpoint contenu dans le downlink\n    let ns = msg.payload.downlinks[0].decoded_payload.setpoint;\n    // Stocke ce new setpoint dans le contexte (flow)\n    flow.set(\"consigne\", ns);\n    // Ne pas envoyer ce message en aval, puisqu'on n'envoie que les messages uplink enrichis\n    return null;\n}\n\n// Dans les autres cas, renvoyer simplement le message inchangé (ou adapter selon vos besoins)\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 690,
-        "y": 300,
+        "id": "64864884f492c288",
+        "type": "inject",
+        "z": "4fba69895c0685e8",
+        "name": "SET Temperature",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"downlinks\":[{\"f_port\":30,\"decoded_payload\":{\"setpoint\":30},\"priority\":\"NORMAL\"}]}",
+        "payloadType": "json",
+        "x": 410,
+        "y": 320,
         "wires": [
             [
-                "636253e802b98c1a",
-                "5459ec41f71e128d"
+                "ac8d0ac78cafd1be"
             ]
         ]
     },
     {
-        "id": "636253e802b98c1a",
+        "id": "b7abf63a033f4ae2",
         "type": "influxdb out",
-        "z": "594c2d7d5069c978",
-        "influxdb": "32120f2e51fdb2e8",
+        "z": "4fba69895c0685e8",
+        "influxdb": "b0b25962c3682228",
         "name": "Influxdb",
         "measurement": "device_1",
         "precision": "",
@@ -415,32 +335,115 @@
         "retentionPolicyV18Flux": "",
         "org": "training-usmb",
         "bucket": "iot-platform",
-        "x": 900,
-        "y": 300,
+        "x": 1080,
+        "y": 320,
         "wires": []
     },
     {
-        "id": "5459ec41f71e128d",
-        "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages total 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 360,
+        "id": "1364a5b36ddf8aaa",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "b7abf63a033f4ae2",
+                "0b21128801460f8e"
+            ]
+        ]
+    },
+    {
+        "id": "46e9db99254179b8",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "d": true,
+        "name": "function 2",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.setpoint;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "b3bfa131aad8e1b9"
+            ]
+        ]
+    },
+    {
+        "id": "b3bfa131aad8e1b9",
+        "type": "influxdb out",
+        "z": "4fba69895c0685e8",
+        "d": true,
+        "influxdb": "b0b25962c3682228",
+        "name": "Influxdb",
+        "measurement": "setpointUplink",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "training-usmb",
+        "bucket": "iot-platform",
+        "x": 1080,
+        "y": 220,
         "wires": []
     },
     {
-        "id": "8e72527e12b5879b",
+        "id": "31b57b092e42172c",
+        "type": "mqtt out",
+        "z": "4fba69895c0685e8",
+        "name": "Publisher",
+        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/down/push",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "05a48b461daefc9e",
+        "x": 880,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "842a9fcc2f6bf933",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "name": "function 3",
+        "func": "newmsg = msg.payload.downlinks[0].decoded_payload.setpoint\nmsg.payload = {};\nmsg.payload.consigne = newmsg;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 320,
+        "wires": [
+            [
+                "b7abf63a033f4ae2",
+                "f5f19f5f5621f257"
+            ]
+        ]
+    },
+    {
+        "id": "f5f19f5f5621f257",
         "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages UpLink 1",
+        "z": "4fba69895c0685e8",
+        "name": "Consigne envoyée",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -449,36 +452,71 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 670,
-        "y": 360,
+        "x": 1110,
+        "y": 380,
         "wires": []
     },
     {
-        "id": "06372c0729805ead",
-        "type": "mqtt in",
-        "z": "594c2d7d5069c978",
-        "name": "Subscriber",
-        "topic": "v3/demolaura@ttn/devices/demo1-laura-otaa/down/#",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "05d0ff18e647fc53",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 400,
-        "y": 400,
+        "id": "ac8d0ac78cafd1be",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "name": "function 4",
+        "func": "msg.payload.downlinks[0].decoded_payload.setpoint = Math.floor(Math.random() * (35 - 10 + 1)) + 15\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 320,
         "wires": [
             [
-                "926de59f2cc3c1f4"
+                "842a9fcc2f6bf933",
+                "31b57b092e42172c",
+                "65ca9052c7ee6cc7"
             ]
         ]
     },
     {
-        "id": "926de59f2cc3c1f4",
+        "id": "0b21128801460f8e",
         "type": "debug",
-        "z": "594c2d7d5069c978",
-        "name": "Messages DownLink 1",
+        "z": "4fba69895c0685e8",
+        "name": "Remontée de data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "65ca9052c7ee6cc7",
+        "type": "debug",
+        "z": "4fba69895c0685e8",
+        "name": "Trame Donwlink envoyé",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "daebc1b3a9e5259e",
+        "type": "debug",
+        "z": "4fba69895c0685e8",
+        "name": "Messages UpLink",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -487,8 +525,188 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 680,
-        "y": 400,
+        "x": 550,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "6d8bd8e6d5eea9e9",
+        "type": "mqtt in",
+        "z": "4fba69895c0685e8",
+        "name": "Subscriber",
+        "topic": "v3/bressy-arizzi@ttn/devices/projet-device/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "0aa40e02926c88e7",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "daebc1b3a9e5259e",
+                "949a6f6cf66d0ea4"
+            ]
+        ]
+    },
+    {
+        "id": "bdd99e8d4af28cee",
+        "type": "inject",
+        "z": "4fba69895c0685e8",
+        "name": "SET Temperature",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"downlinks\":[{\"f_port\":30,\"decoded_payload\":{\"setpoint\":30},\"priority\":\"NORMAL\"}]}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "ea5ee655083468aa"
+            ]
+        ]
+    },
+    {
+        "id": "9d8e567d501215d3",
+        "type": "influxdb out",
+        "z": "4fba69895c0685e8",
+        "influxdb": "b0b25962c3682228",
+        "name": "Influxdb",
+        "measurement": "device_2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "training-usmb",
+        "bucket": "iot-platform",
+        "x": 760,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "9ff9719d9e7bf353",
+        "type": "mqtt out",
+        "z": "4fba69895c0685e8",
+        "name": "Publisher",
+        "topic": "v3/bressy-arizzi@ttn/devices/projet-device/down/push",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0aa40e02926c88e7",
+        "x": 520,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "949a6f6cf66d0ea4",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "name": "function 7",
+        "func": "// Si le message contient des données uplink, on traite et envoie le message complet.\nif (msg.payload && msg.payload.uplink_message && msg.payload.uplink_message.decoded_payload) {\n    // Récupère les données uplink (température et setpoint)\n    let uplink = msg.payload.uplink_message.decoded_payload;\n    // Récupère la dernière valeur de new setpoint stockée (ou null si non défini)\n    let Consigne = flow.get(\"consigne\") || null;\n    // Construit le nouveau payload combiné\n    msg.payload = {\n        temperature: uplink.temperature,\n        setpoint: uplink.setpoint,\n        consigne: Consigne\n    };\n    return msg;\n}\n\n// Si le message contient des données downlink, on met à jour le contexte et on n'envoie rien.\nif (msg.payload && msg.payload.downlinks && msg.payload.downlinks[0] && msg.payload.downlinks[0].decoded_payload) {\n    // Récupère le setpoint contenu dans le downlink\n    let ns = msg.payload.downlinks[0].decoded_payload.setpoint;\n    // Stocke ce new setpoint dans le contexte (flow)\n    flow.set(\"consigne\", ns);\n    // Ne pas envoyer ce message en aval, puisqu'on n'envoie que les messages uplink enrichis\n    return null;\n}\n\n// Dans les autres cas, renvoyer simplement le message inchangé (ou adapter selon vos besoins)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 640,
+        "wires": [
+            [
+                "9d8e567d501215d3",
+                "950d8d7161e539f9"
+            ]
+        ]
+    },
+    {
+        "id": "950d8d7161e539f9",
+        "type": "debug",
+        "z": "4fba69895c0685e8",
+        "name": "Consigne envoyée",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ea5ee655083468aa",
+        "type": "function",
+        "z": "4fba69895c0685e8",
+        "name": "function 8",
+        "func": "msg.payload.downlinks[0].decoded_payload.setpoint = Math.floor(Math.random() * (35 - 10 + 1)) + 15\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "9ff9719d9e7bf353",
+                "949a6f6cf66d0ea4",
+                "b6583e79a014f87a"
+            ]
+        ]
+    },
+    {
+        "id": "b6583e79a014f87a",
+        "type": "debug",
+        "z": "4fba69895c0685e8",
+        "name": "Trame Donwlink envoyé",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "3ccaece85195af5b",
+        "type": "comment",
+        "z": "4fba69895c0685e8",
+        "name": "Device 2",
+        "info": "",
+        "x": 260,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "f5ca99395c25c7d2",
+        "type": "comment",
+        "z": "4fba69895c0685e8",
+        "name": "Device 1",
+        "info": "",
+        "x": 460,
+        "y": 260,
         "wires": []
     }
 ]
